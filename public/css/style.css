@@ -1,0 +1,112 @@
+/* body{
+    background-color: pink;
+} */
+
+.navbar{
+    height:5rem;
+    background-color: white;
+    margin-bottom: 1rem;  
+}
+
+.fa-compass{
+    color:#fe424d;
+    font-size:2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+footer{   
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: lightgrey;
+    padding: 2rem 0;   /* increases top-bottom space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;         /* space between rows */
+}
+
+/* Icons */
+.f-info i{
+    font-size: 2rem;   /* increase icon size */
+    margin: 0 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.f-info i:hover{
+    color: #0d6efd;    /* bootstrap blue hover effect */
+}
+
+/* Links */
+.f-info-links a{
+    text-decoration: none;
+    color: #222;
+    margin: 0 10px;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+
+/* Card Image */
+.listing-img{
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+
+/* Card Styling */
+.listing-card{
+    border-radius: 12px;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.listing-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Title */
+.card-title{
+    font-weight: 600;
+}
+
+/* Price */
+.card-text{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.show-card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.show-img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: 600;
+}
+
+.btn-dark {
+    transition: 0.3s ease;
+}
+
+.btn-dark:hover {
+    transform: translateY(-2px);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+}
+
+
