@@ -110,3 +110,50 @@ footer{
 }
 
 
+/* Review Section */
+.review-section {
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* Rating Label */
+.rating-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Rating Slider */
+.rating-slider {
+    width: 100%;
+    accent-color: #fe424d;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.rating-slider:hover {
+    transform: scale(1.02);
+}
+
+/* Review Textarea */
+.review-textarea {
+    border-radius: 8px;
+    padding: 0.6rem;
+}
+
+/* showing review style starts */
+.review-card {
+    transition: 0.3s ease;
+    border-radius: 15px;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.all-reviews h4 {
+    border-left: 5px solid #dc3545;
+    padding-left: 10px;
+}
+/* showing review style ends */
+

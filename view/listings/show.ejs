@@ -1,5 +1,5 @@
 <% layout("/layouts/boilerplate") -%>
-<body>
+
 <div class="row justify-content-center mt-5">
     <div class="col-lg-8 col-md-10">
 
@@ -25,7 +25,7 @@
 
                 <!-- Price -->
                 <h4 class="text-dark mb-3">
-                    ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+                     ₹ <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / night
                 </h4>
 
                 <!-- Description -->
@@ -35,7 +35,6 @@
 
                 <!-- Buttons -->
                 <div class="d-flex gap-3 mt-4">
-
                     <a href="/listings/<%= listing._id %>/edit" 
                        class="btn btn-dark">
                        Edit
@@ -47,12 +46,107 @@
                             Delete
                         </button>
                     </form>
+                </div>
 
+                <!-- Review Section -->
+                <div class="review-section mt-5">
+                    <h4 class="mb-3">Leave a Review</h4>
+
+                    <form 
+                        method="POST" 
+                        action="/listings/<%= listing._id %>/reviews" 
+                        novalidate
+                        class="needs-validation">
+
+                        <!-- Rating -->
+                        <div class="mb-3">
+                            <label for="rating" class="rating-label">Rating</label>
+                            <input type="range" 
+                                   min="1" 
+                                   max="5"               
+                                   id="rating"
+                                   name="review[rating]"
+                                   class="form-range rating-slider">
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comments</label>
+                            <textarea name="review[comment]"
+                                      rows="4"
+                                      class="form-control review-textarea"
+                                      placeholder="Write your review..."
+                                      required
+                                      ></textarea>
+                                      <div class="invalid-feedback">Please Add some comments for review</div>
+                                      
+                        </div>
+
+                        <button class="btn btn-danger">Submit</button>
+                    </form>
+
+                    <hr class="my-5"/>
+
+        <!-- showing reviews -->
+
+                                <div class="all-reviews">
+                                <h4 class="mb-4 fw-bold">
+                                <i class="fa-solid fa-star text-warning"></i> All Reviews
+                                </h4>
+
+                                <% if(listing.reviews.length > 0){ %>
+                                <div class="row g-4">
+                                <% for(review of listing.reviews){ %>                   
+                                <div class="col-md-6">
+                                <div class="card shadow-sm border-0 h-100 review-card">
+                                <div class="card-body">
+                                <!-- Username -->
+                                <h5 class="fw-bold mb-2">
+                                <i class="fa-solid fa-user text-secondary"></i> Jony
+                                </h5>
+                                <!-- Rating Stars -->
+                                <div class="mb-2 text-warning">
+                                <% for(let i = 1; i <= 5; i++){ %>
+                                <% if(i <= review.rating){ %>
+                                <i class="fa-solid fa-star"></i>
+                                <% } else { %>
+                                <i class="fa-regular fa-star"></i>
+                                <% } %>
+                                <% } %>
+                                </div>
+
+                                <!-- Comment -->
+                                <p class="card-text text-muted">
+                                "<%= review.comment %>"
+                                </p>
+
+                                <form class="mb-3"
+                                    method="POST" 
+                                    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                    <button class="btn btn-sm btn-dark">
+                                        <i class="fa-solid fa-trash"></i> Delete
+                                    </button>
+                                </form>
+
+                                </div>
+                                </div>
+                                </div>
+                                <% } %> 
+                                </div>
+                                <% } else { %>
+                                <p class="text-muted">No reviews yet. Be the first to review! 😊</p>
+                                <% } %>
+                                </div>
+            
+    <!-- end of showing reviews -->
                 </div>
 
             </div>
         </div>
 
+        
+
     </div>
 </div>
-</body>
+
+

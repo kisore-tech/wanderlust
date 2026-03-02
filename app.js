@@ -1,11 +1,15 @@
 const express=require("express");
 const mongoose=require("mongoose");
-const Listing=require("./models/listing.js");
 const ejsMate=require("ejs-mate");
 const path=require("path");
 const app = express();
 const port=3000;
 const methodOverride=require("method-override");
+const ExpressError=require("./utils/ExpressError.js");
+
+
+const listings=require("./routes/listing.js");
+const reviews=require("./routes/review.js");
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"view"));
@@ -24,57 +28,25 @@ app.get("/",(req,res)=>{
     res.send("hi I am root");
 });
 
-//index route
-app.get("/listings",async(req,res)=>{
-    const allListings=await Listing.find({});
-    res.render("listings/index.ejs",{allListings});
-})
 
 
-//New Route
-app.get("/listings/new", (req, res) => {
-    res.render("listings/new.ejs");
+
+
+app.use("/listings",listings);
+app.use("/listings/:id/reviews",reviews);
+
+
+// 404 handler
+app.use((req, res, next) => {
+     next(new ExpressError(404, "Page Not Found!"));
 });
 
-
-//show route
-app.get("/listings/:id",async (req, res)=>{
-    let {id}=req.params;
-    console.log(id);
-    const listing=await Listing.findById(id);
- 
-    res.render("listings/show.ejs",{listing});
-})
-
-//create Route
-app.post("/listings",async (req,res)=>{
-    console.log(req.body);
-  const newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listings");
+// error middleware
+app.use((err, req, res, next) => {
+    let { statusCode = 500, message = "Something went wrong" } = err;
+    res.status(statusCode).render("listings/error.ejs",{err});
+    // res.status(statusCode).send(message);
 });
-
-//Edit Route
-app.get("/listings/:id/edit",async (req,res)=>{
-  let {id}=req.params;
-  const listing=await Listing.findById(id);
-  res.render("listings/edit.ejs",{listing});
-});
-
-//update Route
-app.put("/listings/:id",async(req,res)=>{
-    let {id}=req.params;
-    await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    res.redirect("/listings");
-})
-
-//Delete Route
-app.delete("/listings/:id",async(req,res)=>{
-    let {id}=req.params;
-    let deletedlisting= await Listing.findByIdAndDelete(id);
-    console.log(deletedlisting);
-    res.redirect("/listings");
-})
 
 app.listen(port,()=>{
     console.log("server is listening to port 3000");
