@@ -8,6 +8,10 @@
     margin-bottom: 1rem;  
 }
 
+.navbar .container-fluid{
+       background-color: white;
+}
+
 .fa-compass{
     color:#fe424d;
     font-size:2rem;
