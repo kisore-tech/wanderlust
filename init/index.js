@@ -9,7 +9,12 @@ async function main() {
   await Listing.deleteMany({});
   console.log("deleted");
 
-  await Listing.insertMany(initData);
+  initData.data = initData.data.map((obj) => ({
+    ...obj,
+    owner: "69b2f400f3b326aba3a2ba3e"
+  }));
+
+  await Listing.insertMany(initData.data);
   console.log("data was initialized");
 
   mongoose.connection.close();

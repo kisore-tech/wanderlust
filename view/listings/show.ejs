@@ -16,7 +16,7 @@
                 <h2 class="card-title mb-3">
                     <%= listing.title %>
                 </h2>
-
+                <p class="card-text">Owned_BY: <i><%= listing.owner.username %></i></p>
                 <!-- Location -->
                 <p class="text-muted">
                     <i class="fa-solid fa-location-dot"></i>
@@ -32,7 +32,7 @@
                 <p class="card-text">
                     <%= listing.description %>
                 </p>
-
+         
                 <!-- Buttons -->
                 <div class="d-flex gap-3 mt-4">
                     <a href="/listings/<%= listing._id %>/edit" 
@@ -49,6 +49,7 @@
                 </div>
 
                 <!-- Review Section -->
+                 <% if(currUser) {%>
                 <div class="review-section mt-5">
                     <h4 class="mb-3">Leave a Review</h4>
 
@@ -84,7 +85,7 @@
 
                         <button class="btn btn-danger">Submit</button>
                     </form>
-
+                    <% } %>
                     <hr class="my-5"/>
 
         <!-- showing reviews -->
@@ -102,7 +103,7 @@
                                 <div class="card-body">
                                 <!-- Username -->
                                 <h5 class="fw-bold mb-2">
-                                <i class="fa-solid fa-user text-secondary"></i> Jony
+                                <i class="fa-solid fa-user text-secondary"></i> @<%=review.author.username%>
                                 </h5>
                                 <!-- Rating Stars -->
                                 <div class="mb-2 text-warning">
@@ -119,15 +120,13 @@
                                 <p class="card-text text-muted">
                                 "<%= review.comment %>"
                                 </p>
-
-                                <form class="mb-3"
-                                    method="POST" 
-                                    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+                                <form method="POST"  
+                                  action="/listings/<%=listing._id %>/reviews/<%= review._id %>?_method=DELETE">
                                     <button class="btn btn-sm btn-dark">
                                         <i class="fa-solid fa-trash"></i> Delete
                                     </button>
                                 </form>
-
+                           
                                 </div>
                                 </div>
                                 </div>
