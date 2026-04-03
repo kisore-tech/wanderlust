@@ -1,7 +1,7 @@
 const User=require("../models/user.js");
 
 module.exports.renderSignupForm=(req,res)=>{
-    res.render("users/signup.ejs");
+    res.render("Users/signup");
 }
 
 module.exports.signup = async (req,res)=>{
@@ -19,7 +19,7 @@ module.exports.signup = async (req,res)=>{
 };
 
 module.exports.renderLoginForm = (req,res)=>{
-   res.render("users/login.ejs");
+   res.render("Users/login");
 };
 
 module.exports.login=async (req,res)=>{
