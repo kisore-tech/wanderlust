@@ -22,7 +22,7 @@ const reviewsRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 
 app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"view"));
+app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
@@ -108,5 +108,4 @@ app.use((err, req, res, next) => {
 app.listen(port,()=>{
     console.log("server is listening to port 3000");
 });
-
 
