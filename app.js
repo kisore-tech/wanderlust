@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 // error middleware
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong" } = err;
-    res.status(statusCode).render("listings/error.ejs",{err});
+    res.status(statusCode).render("listings/error",{err});
     // res.status(statusCode).send(message);
 });
 
