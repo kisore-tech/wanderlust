@@ -87,7 +87,7 @@ app.use("/",userRouter);
 
 
 app.get("/",(req,res)=>{
-    res.redirect("/listings");
+    res.send("hi I am root");
 });
 
 
